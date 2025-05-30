@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ToggleAnswer from '@/lib/features/answers/ToggleAnswer';
 
 export default function Home() {
   return (
@@ -12,6 +13,9 @@ export default function Home() {
           height={38}
           priority
         />
+
+        <ToggleAnswer />
+
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{' '}
