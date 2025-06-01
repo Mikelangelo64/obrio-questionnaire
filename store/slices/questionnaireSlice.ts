@@ -1,9 +1,16 @@
 import { TRootState } from '@/store/store';
-import { IDynamicTextSegment, IOption, TScreenId } from '@/types/question.type';
+import {
+  IDynamicTextSegment,
+  IOption,
+  TScreen,
+  TScreenId,
+} from '@/types/question.type';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+type TAnswer = IOption & { questionTitle: TScreen['title'] };
+
 interface IQuestionnaireState {
-  answers: Record<TScreenId, IOption>;
+  answers: Record<TScreenId, TAnswer>;
   nextScreenId: TScreenId | null;
   currentStep: string;
   completedSteps: string[];
@@ -29,7 +36,10 @@ const questionnaireSlice = createSlice({
   reducers: {
     setAnswer: (
       state,
-      action: PayloadAction<{ screenId: TScreenId; answer: IOption }>,
+      action: PayloadAction<{
+        screenId: TScreenId;
+        answer: TAnswer;
+      }>,
     ) => {
       state.answers[action.payload.screenId] = action.payload.answer;
       if (!state.startTime) {

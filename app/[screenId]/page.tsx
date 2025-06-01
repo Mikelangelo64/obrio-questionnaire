@@ -46,7 +46,7 @@ async function getScreenData(screenId: string): Promise<{
   }
 }
 
-export default async function Answer({
+export default async function Screen({
   params,
 }: {
   params: Promise<{ screenId: TScreenId }>;

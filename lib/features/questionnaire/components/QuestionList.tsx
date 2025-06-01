@@ -2,6 +2,7 @@
 
 import { useAppDispatch } from '@/store/hooks';
 import {
+  EExtremeStatus,
   IOption,
   TNextScreenOptionCondition,
   TQuestion,
@@ -14,6 +15,7 @@ import {
   setNextScreenId,
   setTextDynamicSegment,
 } from '@/store/slices/questionnaireSlice';
+import { PAGE_RESULT_URL } from '../constants';
 
 interface IProps {
   screenData: TScreenBase & TQuestion;
@@ -23,7 +25,9 @@ interface IProps {
 const QuestionList = ({ screenData }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const findNextScreenIdFromConditions = (
+  const isTheLastScreen = screenData.extremeStatus === EExtremeStatus.END;
+
+  const getNextScreenIdFromConditions = (
     conditions: TNextScreenOptionCondition,
     option: IOption,
   ) => {
@@ -42,7 +46,7 @@ const QuestionList = ({ screenData }: IProps) => {
     dispatch(
       setAnswer({
         screenId: screenData.screenId,
-        answer: option,
+        answer: { ...option, questionTitle: screenData.title },
       }),
     );
     dispatch(
@@ -64,7 +68,7 @@ const QuestionList = ({ screenData }: IProps) => {
   return (
     <div>
       {screenData.options.map(option => {
-        const nextScreenIdFromConditions = findNextScreenIdFromConditions(
+        const nextScreenIdFromConditions = getNextScreenIdFromConditions(
           screenData.nextScreenConditions,
           option,
         );
@@ -73,7 +77,10 @@ const QuestionList = ({ screenData }: IProps) => {
           <Link
             key={option.optionId}
             href={
-              screenData.nextInfoScreenId || nextScreenIdFromConditions || ''
+              (isTheLastScreen && PAGE_RESULT_URL) ||
+              screenData.nextInfoScreenId ||
+              nextScreenIdFromConditions ||
+              '/'
             }
             onClick={() => onClick(option, nextScreenIdFromConditions)}
           >
