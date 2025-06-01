@@ -7,6 +7,11 @@ export enum EQuestionType {
   OPTIONS = 'OPTIONS',
 }
 
+export enum EExtremeStatus {
+  START = 'START',
+  END = 'END',
+}
+
 export type TScreenId = string;
 
 export interface IDynamicTextSegment {
@@ -42,6 +47,7 @@ export type TScreenBase = {
   title: string;
   description?: string;
   nextInfoScreenId?: TScreenId;
+  extremeStatus?: EExtremeStatus;
 };
 
 export type TInfoScreen = {

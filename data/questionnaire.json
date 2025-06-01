@@ -3,6 +3,7 @@
     "screenId": "prelanding",
     "screenType": "QUESTION",
     "questionType": "OPTIONS",
+    "extremeStatus": "START",
     "title": "Select your gender:",
     "options": [
       {
@@ -73,6 +74,7 @@
     "screenId": "male-choose",
     "screenType": "QUESTION",
     "questionType": "OPTIONS",
+    "extremeStatus": "END",
     "title": "another choose:",
     "options": [
       {

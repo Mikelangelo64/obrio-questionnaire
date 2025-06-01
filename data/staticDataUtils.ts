@@ -1,5 +1,5 @@
 import QuestionData from './questionnaire.json';
-import { TScreen } from '@/types/question.type';
+import { EExtremeStatus, TScreen } from '@/types/question.type';
 
 export const STATIC_SCREENS = QuestionData as TScreen[];
 
@@ -9,6 +9,14 @@ export function getStaticScreens(): TScreen[] {
 
 export function getStaticScreen(screenId: string): TScreen | null {
   return STATIC_SCREENS.find(screen => screen.screenId === screenId) || null;
+}
+
+export function getStaticFirstScreen(): TScreen | null {
+  return (
+    STATIC_SCREENS.find(
+      screen => screen.extremeStatus === EExtremeStatus.START,
+    ) || null
+  );
 }
 
 export function shouldUseStaticData(): boolean {

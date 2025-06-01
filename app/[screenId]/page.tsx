@@ -1,34 +1,15 @@
 import Info from '@/lib/features/questionnaire/components/Info';
 import QuestionList from '@/lib/features/questionnaire/components/QuestionList';
 import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments';
+import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
 import {
-  getStaticScreen,
-  getStaticScreens,
-  shouldUseStaticData,
-} from '@/data/staticDataUtils';
-import { EScreenType, TScreen, TScreenId } from '@/types/question.type';
-
-async function fetchScreensData(): Promise<TScreen[]> {
-  // Use static data for local build
-  if (shouldUseStaticData()) {
-    console.log('Using static data for local build');
-    return getStaticScreens();
-  }
-
-  try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const response = await fetch(`${apiUrl}/api`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return (await response.json()) as TScreen[];
-  } catch (error) {
-    console.warn('API fetch failed', error);
-    return [];
-  }
-}
+  EExtremeStatus,
+  EScreenType,
+  TScreen,
+  TScreenId,
+} from '@/types/question.type';
+import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
+import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton';
 
 export async function generateStaticParams() {
   try {
@@ -79,6 +60,11 @@ export default async function Answer({
 
   return (
     <div>
+      {screenData.extremeStatus !== EExtremeStatus.START && (
+        <div>
+          <GoBackButton />
+        </div>
+      )}
       <TextWithDynamicSegments text={screenData.title} />
 
       {screenData.description && (
