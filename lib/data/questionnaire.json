@@ -8,12 +8,20 @@
       {
         "optionId": "Female",
         "value": "Female",
-        "label": "Female"
+        "label": "Female",
+        "dynamicTextSegment": {
+          "label": "gender",
+          "value": "female"
+        }
       },
       {
         "optionId": "Male",
         "value": "Male",
-        "label": "Male"
+        "label": "Male",
+        "dynamicTextSegment": {
+          "label": "gender",
+          "value": "male"
+        }
       }
     ],
     "nextScreenConditions": [
@@ -31,7 +39,7 @@
   {
     "screenId": "info",
     "screenType": "INFO",
-    "title": "Just info 2:",
+    "title": "Just info for {gender}",
     "buttonLabel": "next",
     "nextScreenInfoId": "info-2",
     "dependsOn": "prelanding"
@@ -39,7 +47,7 @@
   {
     "screenId": "info-2",
     "screenType": "INFO",
-    "title": "Just info:",
+    "title": "{Gender} Just info 2:",
     "dependsOn": "prelanding"
   },
   {

@@ -6,6 +6,7 @@ import {
   shouldUseStaticData,
 } from '@/lib/data/staticDataUtils';
 import { EScreenType, TScreen, TScreenId } from '@/types/question.type';
+import TextWithDynamicSegments from '@/lib/features/questionnaire/TextWithDynamicSegments';
 
 async function fetchScreensData(): Promise<TScreen[]> {
   // Use static data for local build
@@ -78,7 +79,11 @@ export default async function Answer({
 
   return (
     <div>
-      <p>{screenData.title}</p>
+      <TextWithDynamicSegments text={screenData.title} />
+
+      {screenData.description && (
+        <TextWithDynamicSegments text={screenData.description} />
+      )}
 
       {screenData.screenType === EScreenType.QUESTION && (
         <QuestionList screenData={screenData} screenId={screenId} />

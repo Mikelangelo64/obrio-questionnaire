@@ -9,10 +9,16 @@ export enum EQuestionType {
 
 export type TScreenId = string;
 
+export interface IDynamicTextSegment {
+  label: string;
+  value: string;
+}
+
 export interface IOption {
   optionId: string;
   value: string;
   label: string;
+  dynamicTextSegment?: IDynamicTextSegment;
 }
 
 export interface IAdditionalInfo {

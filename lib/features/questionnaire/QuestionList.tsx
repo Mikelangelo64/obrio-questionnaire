@@ -9,7 +9,11 @@ import {
   TScreenId,
 } from '@/types/question.type';
 import Link from 'next/link';
-import { setAnswer, setNextScreenId } from './questionnaireSlice';
+import {
+  setAnswer,
+  setNextScreenId,
+  setTextDynamicSegment,
+} from './questionnaireSlice';
 
 interface IProps {
   screenData: TScreenBase & TQuestion;
@@ -46,6 +50,15 @@ const QuestionList = ({ screenData }: IProps) => {
         screenId: nextScreenId,
       }),
     );
+
+    if (option.dynamicTextSegment) {
+      dispatch(
+        setTextDynamicSegment({
+          label: option.dynamicTextSegment.label.toLowerCase(),
+          value: option.dynamicTextSegment.value.toLowerCase(),
+        }),
+      );
+    }
   };
 
   return (
