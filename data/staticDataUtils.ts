@@ -1,4 +1,4 @@
-import QuestionData from '@/lib/data/questionnaire.json';
+import QuestionData from './questionnaire.json';
 import { TScreen } from '@/types/question.type';
 
 export const STATIC_SCREENS = QuestionData as TScreen[];

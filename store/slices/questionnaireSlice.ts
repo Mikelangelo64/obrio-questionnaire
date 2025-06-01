@@ -1,4 +1,4 @@
-import { TRootState } from '@/lib/store';
+import { TRootState } from '@/store/store';
 import { IDynamicTextSegment, IOption, TScreenId } from '@/types/question.type';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 

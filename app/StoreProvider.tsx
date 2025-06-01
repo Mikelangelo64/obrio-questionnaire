@@ -1,6 +1,6 @@
 'use client';
 
-import { makeStore, TAppStore } from '@/lib/store';
+import { makeStore, TAppStore } from '@/store/store';
 import React, { ReactNode, useRef } from 'react';
 import { Provider } from 'react-redux';
 

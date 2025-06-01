@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import questionnaireReducer from '@/lib/features/questionnaire/questionnaireSlice';
+import questionnaireReducer from '@/store/slices/questionnaireSlice';
 
 export const makeStore = () => {
   return configureStore({

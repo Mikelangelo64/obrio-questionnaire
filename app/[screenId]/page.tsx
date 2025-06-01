@@ -1,12 +1,12 @@
-import Info from '@/lib/features/questionnaire/Info';
-import QuestionList from '@/lib/features/questionnaire/QuestionList';
+import Info from '@/lib/features/questionnaire/components/Info';
+import QuestionList from '@/lib/features/questionnaire/components/QuestionList';
+import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments';
 import {
   getStaticScreen,
   getStaticScreens,
   shouldUseStaticData,
-} from '@/lib/data/staticDataUtils';
+} from '@/data/staticDataUtils';
 import { EScreenType, TScreen, TScreenId } from '@/types/question.type';
-import TextWithDynamicSegments from '@/lib/features/questionnaire/TextWithDynamicSegments';
 
 async function fetchScreensData(): Promise<TScreen[]> {
   // Use static data for local build

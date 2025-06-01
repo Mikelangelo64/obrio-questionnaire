@@ -1,9 +1,9 @@
 'use client';
 
-import { useAppSelector } from '@/lib/hooks';
+import { useAppSelector } from '@/store/hooks';
 import { TScreenBase, TScreenInfo } from '@/types/question.type';
 import Link from 'next/link';
-import { selectNextScreenId } from './questionnaireSlice';
+import { selectNextScreenId } from '@/store/slices/questionnaireSlice';
 
 interface IProps {
   screenData: TScreenBase & TScreenInfo;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch } from '@/store/hooks';
 import {
   IOption,
   TNextScreenOptionCondition,
@@ -13,7 +13,7 @@ import {
   setAnswer,
   setNextScreenId,
   setTextDynamicSegment,
-} from './questionnaireSlice';
+} from '@/store/slices/questionnaireSlice';
 
 interface IProps {
   screenData: TScreenBase & TQuestion;
