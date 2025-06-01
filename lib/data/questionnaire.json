@@ -1,0 +1,78 @@
+[
+  {
+    "screenId": "prelanding",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Select your gender:",
+    "options": [
+      {
+        "optionId": "Female",
+        "value": "Female",
+        "label": "Female"
+      },
+      {
+        "optionId": "Male",
+        "value": "Male",
+        "label": "Male"
+      }
+    ],
+    "nextScreenConditions": [
+      {
+        "optionId": "Female",
+        "nextScreenId": "female-choose"
+      },
+      {
+        "optionId": "Male",
+        "nextScreenId": "male-choose"
+      }
+    ],
+    "nextScreenInfoId": "info"
+  },
+  {
+    "screenId": "info",
+    "screenType": "INFO",
+    "title": "Just info 2:",
+    "buttonLabel": "next",
+    "nextScreenInfoId": "info-2",
+    "dependsOn": "prelanding"
+  },
+  {
+    "screenId": "info-2",
+    "screenType": "INFO",
+    "title": "Just info:",
+    "dependsOn": "prelanding"
+  },
+  {
+    "screenId": "female-choose",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "female question:",
+    "options": [
+      {
+        "optionId": "f",
+        "value": "f",
+        "label": "f"
+      },
+      {
+        "optionId": "m",
+        "value": "m",
+        "label": "m"
+      }
+    ],
+    "nextScreenConditions": "choise"
+  },
+  {
+    "screenId": "male-choose",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "another choose:",
+    "options": [
+      {
+        "optionId": "male option",
+        "value": "male option",
+        "label": "male option"
+      }
+    ],
+    "nextScreenConditions": "choise"
+  }
+]
