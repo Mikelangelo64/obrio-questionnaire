@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import answersReducer from '@/lib/features/answers/answersSlice';
+import questionnaireReducer from '@/lib/features/questionnaire/questionnaireSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      answers: answersReducer,
+      questionnaire: questionnaireReducer,
     },
   });
 };
