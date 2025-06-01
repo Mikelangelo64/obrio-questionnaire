@@ -34,14 +34,14 @@
         "nextScreenId": "male-choose"
       }
     ],
-    "nextScreenInfoId": "info"
+    "nextInfoScreenId": "info"
   },
   {
     "screenId": "info",
     "screenType": "INFO",
     "title": "Just info for {gender}",
     "buttonLabel": "next",
-    "nextScreenInfoId": "info-2",
+    "nextInfoScreenId": "info-2",
     "dependsOn": "prelanding"
   },
   {

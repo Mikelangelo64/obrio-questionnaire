@@ -1,19 +1,19 @@
 'use client';
 
 import { useAppSelector } from '@/store/hooks';
-import { TScreenBase, TScreenInfo } from '@/types/question.type';
+import { TScreenBase, TInfoScreen } from '@/types/question.type';
 import Link from 'next/link';
 import { selectNextScreenId } from '@/store/slices/questionnaireSlice';
 
 interface IProps {
-  screenData: TScreenBase & TScreenInfo;
+  screenData: TScreenBase & TInfoScreen;
 }
 
 const Info = ({ screenData }: IProps) => {
   const nextHref = useAppSelector(selectNextScreenId);
 
   return (
-    <Link href={screenData.nextScreenInfoId || nextHref || ''}>
+    <Link href={screenData.nextInfoScreenId || nextHref || ''}>
       {screenData.buttonLabel ?? 'go next'}
     </Link>
   );

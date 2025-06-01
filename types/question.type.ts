@@ -41,10 +41,10 @@ export type TScreenBase = {
   screenType: EScreenType;
   title: string;
   description?: string;
-  nextScreenInfoId?: TScreenId;
+  nextInfoScreenId?: TScreenId;
 };
 
-export type TScreenInfo = {
+export type TInfoScreen = {
   screenType: EScreenType.INFO;
   dependsOn: TScreenId;
   buttonLabel?: string;
@@ -62,4 +62,4 @@ export type TQuestionOptions = {
 
 export type TQuestion = TQuestionBase & TQuestionOptions;
 
-export type TScreen = TScreenBase & (TQuestion | TScreenInfo);
+export type TScreen = TScreenBase & (TQuestion | TInfoScreen);

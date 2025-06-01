@@ -73,7 +73,7 @@ const QuestionList = ({ screenData }: IProps) => {
           <Link
             key={option.optionId}
             href={
-              screenData.nextScreenInfoId || nextScreenIdFromConditions || ''
+              screenData.nextInfoScreenId || nextScreenIdFromConditions || ''
             }
             onClick={() => onClick(option, nextScreenIdFromConditions)}
           >
