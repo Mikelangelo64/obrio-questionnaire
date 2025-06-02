@@ -1,18 +1,16 @@
 @use '@/styles/base' as *;
 
-.container {
-  &.info {
-    text-align: center;
+.info_container {
+  text-align: center;
 
-    color: var(--color-white);
-    background-image: linear-gradient(
-      180deg,
-      var(--color-linear-1) 0%,
-      var(--color-linear-2) calc(44%),
-      var(--color-linear-3) calc(80%),
-      var(--color-linear-4) calc(97%)
-    );
-  }
+  color: var(--color-white);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-linear-1) 0%,
+    var(--color-linear-2) calc(44%),
+    var(--color-linear-3) calc(80%),
+    var(--color-linear-4) calc(97%)
+  );
 }
 
 .back_button {

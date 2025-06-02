@@ -67,7 +67,7 @@ export default async function Screen({
   return (
     <LayoutContainer
       withHeader
-      className={cn(isInfoScreen && styles.info, styles.container)}
+      className={cn(isInfoScreen && styles.info_container)}
     >
       <Header variant={isInfoScreen ? 'dark' : 'light'}>
         {screenData.extremeStatus !== EExtremeStatus.START && (

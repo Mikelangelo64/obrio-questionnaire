@@ -6,7 +6,26 @@
   min-height: calc(100 * var(--vh, 1vh));
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
+  &.space-between {
+    justify-content: space-between;
+  }
+
+  &.flex-start {
+    justify-content: flex-start;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.flex-end {
+    justify-content: flex-end;
+  }
+
+  &.space-around {
+    justify-content: space-around;
+  }
 
   &.with_header {
     padding: calc(var(--header-height, #{px-to-rem(54)}) + px-to-rem(20))
