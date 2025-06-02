@@ -21,6 +21,10 @@
 
   font-size: px-to-rem(14);
   line-height: 120%;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .answer {
