@@ -1,11 +1,11 @@
 @use './base' as *;
 
 :root {
+  --wrap: calc((100vw - 330px) / 2);
+
   @include viewport-phone {
     @media (max-width: 360px) {
       --wrap: #{px-to-rem(15)};
     }
   }
-
-  --wrap: calc((100vw - 330px) / 2);
 }

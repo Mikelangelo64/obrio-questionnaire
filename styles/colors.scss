@@ -4,6 +4,8 @@ $colors: (
   'black': #000,
   'white': #fff,
   'bg': #fff0f0,
+
+  'black-100': #333,
   'grey-100': #e0e0e0,
   'grey-200': #eaeef7,
 
@@ -29,5 +31,5 @@ $colors: (
 
 html {
   background-color: var(--color-bg);
-  color: var(--color-black-200);
+  color: var(--color-black-100);
 }
