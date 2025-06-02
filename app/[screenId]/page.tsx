@@ -1,6 +1,6 @@
 import Info from '@/lib/features/questionnaire/components/Info';
 import QuestionList from '@/lib/features/questionnaire/components/QuestionList';
-import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments';
+import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments/TextWithDynamicSegments';
 import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
 import {
   EExtremeStatus,
@@ -77,10 +77,16 @@ export default async function Screen({
       </header>
 
       <div className={styles.wrapper}>
-        <TextWithDynamicSegments text={screenData.title} />
+        <TextWithDynamicSegments
+          className={styles.title}
+          text={screenData.title}
+        />
 
         {screenData.description && (
-          <TextWithDynamicSegments text={screenData.description} />
+          <TextWithDynamicSegments
+            className={styles.description}
+            text={screenData.description}
+          />
         )}
 
         {screenData.screenType === EScreenType.QUESTION && (
