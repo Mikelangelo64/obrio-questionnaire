@@ -25,64 +25,426 @@
         }
       }
     ],
+    "nextScreenConditions": "flow-choise"
+  },
+  {
+    "screenId": "flow-choise",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "So we can get to know you better, tell us about your relationship status.",
+    "options": [
+      {
+        "optionId": "Single",
+        "value": "Single",
+        "label": "Single"
+      },
+      {
+        "optionId": "In a relationship",
+        "value": "In a relationship",
+        "label": "In a relationship"
+      }
+    ],
     "nextScreenConditions": [
       {
-        "optionId": "Female",
-        "nextScreenId": "female-choose"
+        "optionId": "Single",
+        "nextScreenId": "parent-single"
       },
+      {
+        "optionId": "In a relationship",
+        "nextScreenId": "parent"
+      }
+    ]
+  },
+  {
+    "screenId": "parent-single",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Are you a single parent?",
+    "options": [
+      {
+        "optionId": "Yes",
+        "value": "Yes",
+        "label": "Yes",
+        "dynamicTextSegment": {
+          "label": "who have children (if have children)",
+          "value": "who have children"
+        }
+      },
+      {
+        "optionId": "No",
+        "value": "No",
+        "label": "No",
+        "dynamicTextSegment": {
+          "label": "who have children (if have children)",
+          "value": ""
+        }
+      }
+    ],
+    "nextScreenConditions": "single-problem"
+  },
+  {
+    "screenId": "parent",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Are you a parent?",
+    "options": [
+      {
+        "optionId": "Yes",
+        "value": "Yes",
+        "label": "Yes",
+        "dynamicTextSegment": {
+          "label": "who have children (if have children)",
+          "value": "who have children"
+        }
+      },
+      {
+        "optionId": "No",
+        "value": "No",
+        "label": "No",
+        "dynamicTextSegment": {
+          "label": "who have children (if have children)",
+          "value": ""
+        }
+      }
+    ],
+    "nextScreenConditions": "in-a-relationship-problem"
+  },
+  {
+    "screenId": "single-problem",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Single {gender} {who have children (if have children)} need a slightly different approach to improve their relationship. Which statement best describes you?",
+    "options": [
+      {
+        "optionId": "I’m very unhappy with how things are going in my relationship",
+        "value": "I’m very unhappy with how things are going in my relationship",
+        "label": "I’m very unhappy with how things are going in my relationship"
+      },
+      {
+        "optionId": "I’m unhappy with parts of my relationship, but some things are working well",
+        "value": "I’m unhappy with parts of my relationship, but some things are working well",
+        "label": "I’m unhappy with parts of my relationship, but some things are working well"
+      },
+      {
+        "optionId": "I’m generally happy in my relationship",
+        "value": "I’m generally happy in my relationship",
+        "label": "I’m generally happy in my relationship"
+      },
+      {
+        "optionId": "I’ve never been in a relationship",
+        "value": "I’ve never been in a relationship",
+        "label": "I’ve never been in a relationship"
+      }
+    ],
+    "nextScreenConditions": "traits-tend-to-overthink"
+  },
+  {
+    "screenId": "in-a-relationship-problem",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "{Gender} {who have children (if have children)} need a slightly different approach to find their perfect partner. But first, how did you feel in your last relationship?",
+    "options": [
+      {
+        "optionId": "I’m very unhappy with how things are going in my relationship",
+        "value": "I’m very unhappy with how things are going in my relationship",
+        "label": "I’m very unhappy with how things are going in my relationship"
+      },
+      {
+        "optionId": "I’m unhappy with parts of my relationship, but some things are working well",
+        "value": "I’m unhappy with parts of my relationship, but some things are working well",
+        "label": "I’m unhappy with parts of my relationship, but some things are working well"
+      },
+      {
+        "optionId": "I’m generally happy in my relationship",
+        "value": "I’m generally happy in my relationship",
+        "label": "I’m generally happy in my relationship"
+      }
+    ],
+    "nextScreenConditions": "partner-introvert-or-extrovert"
+  },
+  {
+    "screenId": "traits-tend-to-overthink",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Do you tend to overthink?",
+    "options": [
+      {
+        "optionId": "Yes",
+        "value": "Yes",
+        "label": "Yes"
+      },
+      {
+        "optionId": "No",
+        "value": "No",
+        "label": "No"
+      }
+    ],
+    "nextScreenConditions": [
+      {
+        "optionId": "Yes",
+        "nextScreenId": "traits-most-important"
+      },
+      {
+        "optionId": "No",
+        "nextScreenId": "traits-emotional-control"
+      }
+    ],
+    "nextInfoScreenId": "what-is"
+  },
+  {
+    "screenId": "partner-introvert-or-extrovert",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Is your partner an introvert or extrovert?",
+    "options": [
+      {
+        "optionId": "Introvert",
+        "value": "Introvert",
+        "label": "Introvert"
+      },
+      {
+        "optionId": "Extrovert",
+        "value": "Extrovert",
+        "label": "Extrovert"
+      },
+      {
+        "optionId": "A bit of both",
+        "value": "A bit of both",
+        "label": "A bit of both"
+      }
+    ],
+    "nextScreenConditions": "partner-gender"
+  },
+  {
+    "screenId": "what-is",
+    "screenType": "INFO",
+    "title": "So how does it work?",
+    "description": "We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.",
+    "buttonLabel": "Next"
+  },
+  {
+    "screenId": "partner-gender",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "What is your partner’s gender?",
+    "options": [
       {
         "optionId": "Male",
-        "nextScreenId": "male-choose"
-      }
-    ],
-    "nextInfoScreenId": "info"
-  },
-  {
-    "screenId": "info",
-    "screenType": "INFO",
-    "title": "Just info for {gender}",
-    "buttonLabel": "next",
-    "nextInfoScreenId": "info-2",
-    "dependsOn": "prelanding"
-  },
-  {
-    "screenId": "info-2",
-    "screenType": "INFO",
-    "title": "{Gender} Just info 2:",
-    "dependsOn": "prelanding"
-  },
-  {
-    "screenId": "female-choose",
-    "screenType": "QUESTION",
-    "questionType": "OPTIONS",
-    "title": "female question:",
-    "options": [
-      {
-        "optionId": "f",
-        "value": "f",
-        "label": "f"
+        "value": "Male",
+        "label": "Male"
       },
       {
-        "optionId": "m",
-        "value": "m",
-        "label": "m"
+        "optionId": "Female",
+        "value": "Female",
+        "label": "Female"
       }
     ],
-    "nextScreenConditions": "choise"
+    "nextScreenConditions": "partner-priority"
   },
   {
-    "screenId": "male-choose",
+    "screenId": "traits-most-important",
     "screenType": "QUESTION",
     "questionType": "OPTIONS",
-    "extremeStatus": "END",
-    "title": "another choose:",
+    "title": "What is most important to you?",
     "options": [
       {
-        "optionId": "male option",
-        "value": "male option",
-        "label": "male option"
+        "optionId": "Success",
+        "value": "Success",
+        "label": "Success"
+      },
+      {
+        "optionId": "Romance",
+        "value": "Romance",
+        "label": "Romance"
+      },
+      {
+        "optionId": "Stability",
+        "value": "Stability",
+        "label": "Stability"
+      },
+      {
+        "optionId": "Freedom",
+        "value": "Freedom",
+        "label": "Freedom"
       }
     ],
-    "nextScreenConditions": "choise"
+    "nextScreenConditions": "relationship-about-us"
+  },
+  {
+    "screenId": "traits-emotional-control",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Is emotional control tricky for you?",
+    "options": [
+      {
+        "optionId": "Yes",
+        "value": "Yes",
+        "label": "Yes"
+      },
+      {
+        "optionId": "Sometimes",
+        "value": "Sometimes",
+        "label": "Sometimes"
+      },
+      {
+        "optionId": "Rarely",
+        "value": "Rarely",
+        "label": "Rarely"
+      },
+      {
+        "optionId": "Not at all",
+        "value": "Not at all",
+        "label": "Not at all"
+      }
+    ],
+    "nextScreenConditions": "relationship-about-us"
+  },
+  {
+    "screenId": "partner-priority",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Do you agree with the statement below?",
+    "description": "“My partner and I make sex a priority in our relationship”",
+    "options": [
+      {
+        "optionId": "Strongly agree",
+        "value": "Strongly agree",
+        "label": "Strongly agree"
+      },
+      {
+        "optionId": "Agree",
+        "value": "Agree",
+        "label": "Agree"
+      },
+      {
+        "optionId": "Neutral",
+        "value": "Neutral",
+        "label": "Neutral"
+      },
+      {
+        "optionId": "Disagee",
+        "value": "Disagee",
+        "label": "Disagee"
+      },
+      {
+        "optionId": "Strongly disagree",
+        "value": "Strongly disagree",
+        "label": "Strongly disagree"
+      }
+    ],
+    "nextScreenConditions": "think-about-relationship-goals"
+  },
+  {
+    "screenId": "think-about-relationship-goals",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "When you think about your relationship goals, you feel...?",
+    "options": [
+      {
+        "optionId": "Optimistic! They are totally doable, with some guidance.",
+        "value": "Optimistic! They are totally doable, with some guidance.",
+        "label": "Optimistic! They are totally doable, with some guidance."
+      },
+      {
+        "optionId": "Cautious. I’ve struggled before, but I’m hopeful.",
+        "value": "Cautious. I’ve struggled before, but I’m hopeful.",
+        "label": "Cautious. I’ve struggled before, but I’m hopeful."
+      },
+      {
+        "optionId": "I’m feeling a little anxious, honestly.",
+        "value": "I’m feeling a little anxious, honestly.",
+        "label": "I’m feeling a little anxious, honestly."
+      }
+    ],
+    "nextScreenConditions": "relationship-about-us"
+  },
+  {
+    "screenId": "relationship-about-us",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "Where did you hear about us?",
+    "options": [
+      {
+        "optionId": "Poster or Billboard",
+        "value": "Poster or Billboard",
+        "label": "Poster or Billboard"
+      },
+      {
+        "optionId": "Friend or Family",
+        "value": "Friend or Family",
+        "label": "Friend or Family"
+      },
+      {
+        "optionId": "Instagram",
+        "value": "Instagram",
+        "label": "Instagram"
+      },
+      {
+        "optionId": "Direct Mail or Package Insert",
+        "value": "Direct Mail or Package Insert",
+        "label": "Direct Mail or Package Insert"
+      },
+      {
+        "optionId": "Online TV or Streaming TV",
+        "value": "Online TV or Streaming TV",
+        "label": "Online TV or Streaming TV"
+      },
+      {
+        "optionId": "TV",
+        "value": "TV",
+        "label": "TV"
+      },
+      {
+        "optionId": "Radio",
+        "value": "Radio",
+        "label": "Radio"
+      },
+      {
+        "optionId": "Search Engine (Google, Bing, etc.)",
+        "value": "Search Engine (Google, Bing, etc.)",
+        "label": "Search Engine (Google, Bing, etc.)"
+      },
+      {
+        "optionId": "Newspaper or Magazine",
+        "value": "Newspaper or Magazine",
+        "label": "Newspaper or Magazine"
+      },
+      {
+        "optionId": "Facebook",
+        "value": "Facebook",
+        "label": "Facebook"
+      },
+      {
+        "optionId": "Blog Post or Website Review",
+        "value": "Blog Post or Website Review",
+        "label": "Blog Post or Website Review"
+      },
+      {
+        "optionId": "Podcast",
+        "value": "Podcast",
+        "label": "Podcast"
+      },
+      {
+        "optionId": "Influencer",
+        "value": "Influencer",
+        "label": "Influencer"
+      },
+      {
+        "optionId": "Youtube",
+        "value": "Youtube",
+        "label": "Youtube"
+      },
+      {
+        "optionId": "Pinterest",
+        "value": "Pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "optionId": "Other",
+        "value": "Other",
+        "label": "Other"
+      }
+    ],
+    "extremeStatus": "END"
   }
 ]
