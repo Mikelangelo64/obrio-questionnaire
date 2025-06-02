@@ -36,9 +36,13 @@ const QuestionList = ({ screenData, className }: IProps) => {
   const isLastScreen = screenData.extremeStatus === EExtremeStatus.END;
 
   const getNextScreenIdFromConditions = (
-    conditions: TNextScreenOptionCondition,
+    conditions: TNextScreenOptionCondition | undefined,
     option: IOption,
   ) => {
+    if (!conditions) {
+      return null;
+    }
+
     if (!Array.isArray(conditions)) {
       return conditions;
     }

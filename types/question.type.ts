@@ -52,7 +52,6 @@ export type TScreenBase = {
 
 export type TInfoScreen = {
   screenType: EScreenType.INFO;
-  dependsOn: TScreenId;
   buttonLabel?: string;
 };
 
@@ -62,7 +61,7 @@ export type TQuestionBase = {
 
 export type TQuestionOptions = {
   questionType: EQuestionType.OPTIONS;
-  nextScreenConditions: TNextScreenOptionCondition;
+  nextScreenConditions?: TNextScreenOptionCondition;
   options: IOption[];
 };
 
