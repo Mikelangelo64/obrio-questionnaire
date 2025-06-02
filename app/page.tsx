@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   getStaticFirstScreen,
   shouldUseStaticData,
@@ -6,7 +5,7 @@ import {
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
 import { EExtremeStatus, TScreen } from '@/types/question.type';
 import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
-import Button from '@/components/Button/Button';
+import StartQuestionnaireButton from '@/lib/features/questionnaire/components/StartQuestionnaireButton';
 
 import styles from './styles.module.scss';
 
@@ -41,9 +40,10 @@ export default async function Home() {
       <main className={styles.content}>
         <h1 className={styles.title}>Let&apos;s start questionnaire!</h1>
 
-        <Button asChild className={styles.button}>
-          <Link href={screenData?.screenId ?? '/'}>Start test</Link>
-        </Button>
+        <StartQuestionnaireButton
+          startScreenId={screenData?.screenId ?? null}
+          className={styles.button}
+        />
       </main>
 
       <footer className={styles.footer}>

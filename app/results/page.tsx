@@ -2,8 +2,7 @@ import Answers from '@/lib/features/questionnaire/components/Answers/Answers';
 import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
 import styles from './styles.module.scss';
 import Header from '@/components/Header/Header';
-import Button from '@/components/Button/Button';
-import Link from 'next/link';
+import ResetResultsButton from '@/lib/features/questionnaire/components/ResetResultsButton';
 
 export default function Results() {
   return (
@@ -14,9 +13,7 @@ export default function Results() {
 
       <Answers />
 
-      <Button asChild className={styles.button}>
-        <Link href="/">Go to home</Link>
-      </Button>
+      <ResetResultsButton className={styles.button} />
     </LayoutContainer>
   );
 }

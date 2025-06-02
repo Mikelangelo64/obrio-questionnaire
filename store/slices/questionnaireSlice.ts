@@ -12,9 +12,10 @@ type TAnswer = IOption & { questionTitle: TScreen['title'] };
 interface IQuestionnaireState {
   answers: Record<TScreenId, TAnswer>;
   nextScreenId: TScreenId | null;
-  currentStep: string;
   completedSteps: string[];
   startTime: number | null;
+  isQuestionnaireStarted: boolean;
+  isQuestionnaireEnded: boolean;
   textDynamicSegments: Record<
     IDynamicTextSegment['label'],
     IDynamicTextSegment['value']
@@ -24,9 +25,10 @@ interface IQuestionnaireState {
 const initialState: IQuestionnaireState = {
   answers: {},
   nextScreenId: null,
-  currentStep: '',
   completedSteps: [],
   startTime: null,
+  isQuestionnaireStarted: false,
+  isQuestionnaireEnded: false,
   textDynamicSegments: {},
 };
 
@@ -42,9 +44,16 @@ const questionnaireSlice = createSlice({
       }>,
     ) => {
       state.answers[action.payload.screenId] = action.payload.answer;
+
       if (!state.startTime) {
         state.startTime = Date.now();
       }
+    },
+    setIsQuestionnaireStarted: (state, action: PayloadAction<boolean>) => {
+      state.isQuestionnaireStarted = action.payload;
+    },
+    setIsQuestionnaireEnded: (state, action: PayloadAction<boolean>) => {
+      state.isQuestionnaireEnded = action.payload;
     },
     setNextScreenId: (
       state,
@@ -61,10 +70,11 @@ const questionnaireSlice = createSlice({
     resetQuestionnaire: state => {
       state.answers = {};
       state.completedSteps = [];
-      state.currentStep = '';
       state.startTime = null;
       state.nextScreenId = null;
       state.textDynamicSegments = {};
+      state.isQuestionnaireStarted = false;
+      state.isQuestionnaireEnded = false;
     },
   },
 });
@@ -81,10 +91,18 @@ export const selectNextScreenId = (state: TRootState) =>
 export const selectTextDynamicSegments = (state: TRootState) =>
   state.questionnaire.textDynamicSegments;
 
+export const selectIsQuestionnaireStarted = (state: TRootState) =>
+  state.questionnaire.isQuestionnaireStarted;
+
+export const selectIsQuestionnaireEnded = (state: TRootState) =>
+  state.questionnaire.isQuestionnaireEnded;
+
 export const {
   setAnswer,
   setNextScreenId,
   setTextDynamicSegment,
+  setIsQuestionnaireStarted,
+  setIsQuestionnaireEnded,
   resetQuestionnaire,
 } = questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

@@ -12,6 +12,7 @@ import {
 import Link from 'next/link';
 import {
   setAnswer,
+  setIsQuestionnaireEnded,
   setNextScreenId,
   setTextDynamicSegment,
 } from '@/store/slices/questionnaireSlice';
@@ -29,7 +30,7 @@ interface IProps {
 const QuestionList = ({ screenData, className }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const isTheLastScreen = screenData.extremeStatus === EExtremeStatus.END;
+  const isLastScreen = screenData.extremeStatus === EExtremeStatus.END;
 
   const getNextScreenIdFromConditions = (
     conditions: TNextScreenOptionCondition,
@@ -46,7 +47,11 @@ const QuestionList = ({ screenData, className }: IProps) => {
     return nextScreenData?.nextScreenId ?? null;
   };
 
-  const onClick = (option: IOption, nextScreenId: TScreenId | null) => {
+  const onClick = (
+    option: IOption,
+    nextScreenId: TScreenId | null,
+    isLastScreen: boolean,
+  ) => {
     dispatch(
       setAnswer({
         screenId: screenData.screenId,
@@ -67,6 +72,8 @@ const QuestionList = ({ screenData, className }: IProps) => {
         }),
       );
     }
+
+    dispatch(setIsQuestionnaireEnded(isLastScreen));
   };
 
   return (
@@ -82,12 +89,14 @@ const QuestionList = ({ screenData, className }: IProps) => {
             <Button asChild className={styles.button}>
               <Link
                 href={
-                  (isTheLastScreen && PAGE_RESULT_URL) ||
+                  (isLastScreen && PAGE_RESULT_URL) ||
                   screenData.nextInfoScreenId ||
                   nextScreenIdFromConditions ||
                   '/'
                 }
-                onClick={() => onClick(option, nextScreenIdFromConditions)}
+                onClick={() =>
+                  onClick(option, nextScreenIdFromConditions, isLastScreen)
+                }
               >
                 {option.label}
               </Link>
