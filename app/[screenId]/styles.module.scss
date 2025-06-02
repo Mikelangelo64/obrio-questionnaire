@@ -1,0 +1,36 @@
+@use '@/styles/base' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--header-height);
+  padding: px-to-rem(15) var(--wrap);
+
+  //.header__back
+  &__back {
+    position: absolute;
+    top: 50%;
+    left: var(--wrap);
+    z-index: 0;
+
+    transform: translate(0, -50%);
+  }
+
+  //.header__image
+  &__image {
+    margin: auto;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: px-to-rem(20);
+}

@@ -7,6 +7,8 @@ html {
 }
 
 :root {
+  --header-height: #{px-to-rem(54)};
+
   @media (min-width: 320px) and (max-width: 340px) {
     font-size: calc(0.75rem + (16 - 12) * ((100vw - 320px) / (340 - 320)));
     /* Note: The calc base value (0.75rem) MUST be stated in REM to maintain accessibility */

@@ -9,7 +9,9 @@ import {
   TScreenId,
 } from '@/types/question.type';
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
-import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton';
+import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton/GoBackButton';
+import styles from './styles.module.scss';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   try {
@@ -59,25 +61,36 @@ export default async function Screen({
   }
 
   return (
-    <div>
-      {screenData.extremeStatus !== EExtremeStatus.START && (
-        <div>
-          <GoBackButton />
-        </div>
-      )}
-      <TextWithDynamicSegments text={screenData.title} />
+    <>
+      <header className={styles.header}>
+        {screenData.extremeStatus !== EExtremeStatus.START && (
+          <GoBackButton className={styles.header__back} />
+        )}
 
-      {screenData.description && (
-        <TextWithDynamicSegments text={screenData.description} />
-      )}
+        <Image
+          className={styles.header__image}
+          src="/image/header-logo.png"
+          width={15}
+          height={16}
+          alt="Logo"
+        />
+      </header>
 
-      {screenData.screenType === EScreenType.QUESTION && (
-        <QuestionList screenData={screenData} screenId={screenId} />
-      )}
+      <div className={styles.wrapper}>
+        <TextWithDynamicSegments text={screenData.title} />
 
-      {screenData.screenType === EScreenType.INFO && (
-        <Info screenData={screenData} />
-      )}
-    </div>
+        {screenData.description && (
+          <TextWithDynamicSegments text={screenData.description} />
+        )}
+
+        {screenData.screenType === EScreenType.QUESTION && (
+          <QuestionList screenData={screenData} screenId={screenId} />
+        )}
+
+        {screenData.screenType === EScreenType.INFO && (
+          <Info screenData={screenData} />
+        )}
+      </div>
+    </>
   );
 }

@@ -1,0 +1,35 @@
+@use '@/styles/base' as *;
+
+.button {
+  @include reset-button;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: px-to-rem(24);
+  height: px-to-rem(24);
+  border-radius: px-to-rem(6);
+
+  @include transition(background 0.4s);
+
+  color: var(--black-100);
+
+  @include non-mobile-hover {
+    background-color: rgba(var(--color-grey-100--rgb), 0.4);
+  }
+
+  &:focus-visible {
+    background-color: rgba(var(--color-grey-100--rgb), 0.4);
+  }
+
+  &:active {
+    background-color: rgba(var(--color-grey-100--rgb), 0.4);
+  }
+
+  svg,
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
