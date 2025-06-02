@@ -16,6 +16,7 @@ import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
 import Header from '@/components/Header/Header';
 import styles from './styles.module.scss';
 import { NOT_FOUND_URL } from '@/lib/features/questionnaire/constants';
+import QuestionGuardProvider from '@/lib/features/questionnaire/components/QuestionGuardProvider';
 
 export async function generateStaticParams() {
   try {
@@ -67,35 +68,37 @@ export default async function Screen({
   const isInfoScreen = screenData.screenType === EScreenType.INFO;
 
   return (
-    <LayoutContainer
-      withHeader
-      className={cn(isInfoScreen && styles.info_container)}
-    >
-      <Header variant={isInfoScreen ? 'dark' : 'light'}>
-        {screenData.extremeStatus !== EExtremeStatus.START && (
-          <GoBackButton className={styles.back_button} />
-        )}
-      </Header>
+    <QuestionGuardProvider>
+      <LayoutContainer
+        withHeader
+        className={cn(isInfoScreen && styles.info_container)}
+      >
+        <Header variant={isInfoScreen ? 'dark' : 'light'}>
+          {screenData.extremeStatus !== EExtremeStatus.START && (
+            <GoBackButton className={styles.back_button} />
+          )}
+        </Header>
 
-      <div className={styles.wrapper}>
-        <TextWithDynamicSegments
-          className={styles.title}
-          text={screenData.title}
-        />
-
-        {screenData.description && (
+        <div className={styles.wrapper}>
           <TextWithDynamicSegments
-            className={styles.description}
-            text={screenData.description}
+            className={styles.title}
+            text={screenData.title}
           />
-        )}
 
-        {screenData.screenType === EScreenType.QUESTION && (
-          <QuestionList screenData={screenData} screenId={screenId} />
-        )}
+          {screenData.description && (
+            <TextWithDynamicSegments
+              className={styles.description}
+              text={screenData.description}
+            />
+          )}
 
-        {isInfoScreen && <Info screenData={screenData} />}
-      </div>
-    </LayoutContainer>
+          {screenData.screenType === EScreenType.QUESTION && (
+            <QuestionList screenData={screenData} screenId={screenId} />
+          )}
+
+          {isInfoScreen && <Info screenData={screenData} />}
+        </div>
+      </LayoutContainer>
+    </QuestionGuardProvider>
   );
 }
