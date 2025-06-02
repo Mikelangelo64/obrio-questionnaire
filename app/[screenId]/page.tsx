@@ -11,9 +11,11 @@ import {
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
 import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton/GoBackButton';
 import cn from 'clsx';
+import { redirect } from 'next/navigation';
 import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
 import Header from '@/components/Header/Header';
 import styles from './styles.module.scss';
+import { NOT_FOUND_URL } from '@/lib/features/questionnaire/constants';
 
 export async function generateStaticParams() {
   try {
@@ -59,7 +61,7 @@ export default async function Screen({
   const { screenData } = await getScreenData(screenId);
 
   if (!screenData) {
-    return <div>Not found</div>;
+    return redirect(NOT_FOUND_URL);
   }
 
   const isInfoScreen = screenData.screenType === EScreenType.INFO;
