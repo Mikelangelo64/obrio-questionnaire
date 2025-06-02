@@ -1,0 +1,13 @@
+@use '@/styles/base' as *;
+
+.list {
+  @include reset-ul;
+
+  > * + * {
+    margin-top: px-to-rem(20);
+  }
+}
+
+.button {
+  width: 100%;
+}

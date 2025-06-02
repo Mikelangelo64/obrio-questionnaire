@@ -1,5 +1,5 @@
 import Info from '@/lib/features/questionnaire/components/Info';
-import QuestionList from '@/lib/features/questionnaire/components/QuestionList';
+import QuestionList from '@/lib/features/questionnaire/components/QuestionList/QuestionList';
 import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments/TextWithDynamicSegments';
 import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
 import {

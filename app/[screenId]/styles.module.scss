@@ -2,8 +2,9 @@
 
 .container {
   &.info {
-    color: var(--color-white);
+    text-align: center;
 
+    color: var(--color-white);
     background-image: linear-gradient(
       180deg,
       var(--color-linear-1) 0%,

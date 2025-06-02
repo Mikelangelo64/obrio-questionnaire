@@ -15,14 +15,18 @@ import {
   setNextScreenId,
   setTextDynamicSegment,
 } from '@/store/slices/questionnaireSlice';
-import { PAGE_RESULT_URL } from '../constants';
+import { PAGE_RESULT_URL } from '@/lib/features/questionnaire/constants';
+import cn from 'clsx';
+import styles from './styles.module.scss';
+import Button from '@/components/Button/Button';
 
 interface IProps {
   screenData: TScreenBase & TQuestion;
   screenId: string;
+  className?: string;
 }
 
-const QuestionList = ({ screenData }: IProps) => {
+const QuestionList = ({ screenData, className }: IProps) => {
   const dispatch = useAppDispatch();
 
   const isTheLastScreen = screenData.extremeStatus === EExtremeStatus.END;
@@ -66,7 +70,7 @@ const QuestionList = ({ screenData }: IProps) => {
   };
 
   return (
-    <div>
+    <ul className={cn(styles.list, className)}>
       {screenData.options.map(option => {
         const nextScreenIdFromConditions = getNextScreenIdFromConditions(
           screenData.nextScreenConditions,
@@ -74,21 +78,24 @@ const QuestionList = ({ screenData }: IProps) => {
         );
 
         return (
-          <Link
-            key={option.optionId}
-            href={
-              (isTheLastScreen && PAGE_RESULT_URL) ||
-              screenData.nextInfoScreenId ||
-              nextScreenIdFromConditions ||
-              '/'
-            }
-            onClick={() => onClick(option, nextScreenIdFromConditions)}
-          >
-            {option.label}
-          </Link>
+          <li key={option.optionId}>
+            <Button asChild className={styles.button}>
+              <Link
+                href={
+                  (isTheLastScreen && PAGE_RESULT_URL) ||
+                  screenData.nextInfoScreenId ||
+                  nextScreenIdFromConditions ||
+                  '/'
+                }
+                onClick={() => onClick(option, nextScreenIdFromConditions)}
+              >
+                {option.label}
+              </Link>
+            </Button>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
 
