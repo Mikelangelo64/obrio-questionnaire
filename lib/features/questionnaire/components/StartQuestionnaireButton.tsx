@@ -30,7 +30,9 @@ const StartQuestionnaireButton = ({
         }
       }}
     >
-      <Link href={startScreenId ?? NOT_FOUND_URL}>Start test</Link>
+      <Link href={!!startScreenId ? '/' + startScreenId : NOT_FOUND_URL}>
+        Start test
+      </Link>
     </Button>
   );
 };

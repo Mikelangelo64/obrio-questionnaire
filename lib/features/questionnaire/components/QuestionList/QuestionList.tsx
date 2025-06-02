@@ -16,7 +16,10 @@ import {
   setNextScreenId,
   setTextDynamicSegment,
 } from '@/store/slices/questionnaireSlice';
-import { PAGE_RESULT_URL } from '@/lib/features/questionnaire/constants';
+import {
+  NOT_FOUND_URL,
+  PAGE_RESULT_URL,
+} from '@/lib/features/questionnaire/constants';
 import cn from 'clsx';
 import styles from './styles.module.scss';
 import Button from '@/components/Button/Button';
@@ -84,15 +87,23 @@ const QuestionList = ({ screenData, className }: IProps) => {
           option,
         );
 
+        const nextInfoScreenHref = !!screenData.nextInfoScreenId
+          ? '/' + screenData.nextInfoScreenId
+          : null;
+
+        const nextScreenFromConditionsHref = !!nextScreenIdFromConditions
+          ? '/' + nextScreenIdFromConditions
+          : null;
+
         return (
           <li key={option.optionId}>
             <Button asChild className={styles.button}>
               <Link
                 href={
                   (isLastScreen && PAGE_RESULT_URL) ||
-                  screenData.nextInfoScreenId ||
-                  nextScreenIdFromConditions ||
-                  '/'
+                  nextInfoScreenHref ||
+                  nextScreenFromConditionsHref ||
+                  NOT_FOUND_URL
                 }
                 onClick={() =>
                   onClick(option, nextScreenIdFromConditions, isLastScreen)

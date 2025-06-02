@@ -14,6 +14,7 @@ import {
 import Button, { TButtonProps } from '@/components/Button/Button';
 import cn from 'clsx';
 import styles from './styles.module.scss';
+import { NOT_FOUND_URL, PAGE_RESULT_URL } from '../../constants';
 
 type TProps = Omit<TButtonProps, 'asChild' | 'children' | 'variant'> & {
   screenData: TScreenBase & TInfoScreen;
@@ -22,8 +23,13 @@ type TProps = Omit<TButtonProps, 'asChild' | 'children' | 'variant'> & {
 const InfoButton = ({ screenData, className, onClick, ...props }: TProps) => {
   const dispatch = useAppDispatch();
 
-  const nextHref = useAppSelector(selectNextScreenId);
+  const nextScreenId = useAppSelector(selectNextScreenId);
   const isLastScreen = screenData.extremeStatus === EExtremeStatus.END;
+
+  const nextHref = !!nextScreenId ? '/' + nextScreenId : null;
+  const nextScreenFromConditionsHref = !!screenData.nextInfoScreenId
+    ? '/' + screenData.nextInfoScreenId
+    : null;
 
   return (
     <Button
@@ -39,7 +45,14 @@ const InfoButton = ({ screenData, className, onClick, ...props }: TProps) => {
         dispatch(setIsQuestionnaireEnded(isLastScreen));
       }}
     >
-      <Link href={screenData.nextInfoScreenId || nextHref || ''}>
+      <Link
+        href={
+          (isLastScreen && PAGE_RESULT_URL) ||
+          nextScreenFromConditionsHref ||
+          nextHref ||
+          NOT_FOUND_URL
+        }
+      >
         {screenData.buttonLabel ?? 'go next'}
       </Link>
     </Button>
