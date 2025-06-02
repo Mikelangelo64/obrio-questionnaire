@@ -1,0 +1,20 @@
+@use '@/styles/base' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--header-height);
+  padding: px-to-rem(15) var(--wrap);
+
+  //.header__image
+  &__image {
+    margin: auto;
+  }
+}

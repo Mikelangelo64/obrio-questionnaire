@@ -10,9 +10,9 @@ import {
 } from '@/types/question.type';
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
 import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton/GoBackButton';
-import Image from 'next/image';
 import cn from 'clsx';
 import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
+import Header from '@/components/Header/Header';
 import styles from './styles.module.scss';
 
 export async function generateStaticParams() {
@@ -69,23 +69,11 @@ export default async function Screen({
       withHeader
       className={cn(isInfoScreen && styles.info, styles.container)}
     >
-      <header className={styles.header}>
+      <Header variant={isInfoScreen ? 'dark' : 'light'}>
         {screenData.extremeStatus !== EExtremeStatus.START && (
-          <GoBackButton className={styles.header__back} />
+          <GoBackButton className={styles.back_button} />
         )}
-
-        <Image
-          className={styles.header__image}
-          src={
-            isInfoScreen
-              ? '/image/header-logo-white.png'
-              : '/image/header-logo.png'
-          }
-          width={15}
-          height={16}
-          alt="Logo"
-        />
-      </header>
+      </Header>
 
       <div className={styles.wrapper}>
         <TextWithDynamicSegments
