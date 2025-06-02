@@ -52,6 +52,10 @@
 
 .title {
   @include text-heading-1;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .description {
@@ -60,4 +64,8 @@
   font-size: px-to-rem(14);
   font-weight: 400;
   line-height: 180%;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
