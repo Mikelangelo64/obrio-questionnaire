@@ -1,0 +1,40 @@
+@use '@/styles/base' as *;
+
+.container {
+  padding: px-to-rem(20) var(--wrap);
+
+  min-height: calc(100 * var(--vh, 1vh));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  width: 100%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: px-to-rem(30);
+
+  text-align: center;
+}
+
+.title {
+  @include text-heading-1;
+}
+
+.button {
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  font-size: px-to-rem(12);
+
+  //.footer__description
+  &__description {
+    margin: 0;
+  }
+}

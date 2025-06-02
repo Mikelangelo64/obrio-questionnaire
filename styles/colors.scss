@@ -1,0 +1,33 @@
+@use 'sass:color';
+
+$colors: (
+  'black': #000,
+  'white': #fff,
+  'bg': #fff0f0,
+  'grey-100': #e0e0e0,
+  'grey-200': #eaeef7,
+
+  'linear-1': #141333,
+  'linear-2': #202261,
+  'linear-3': #543c97,
+  'linear-4': #6939a1,
+);
+
+@function hex-to-rgb($hex) {
+  // @return color.red($hex), color.green($hex), color.blue($hex);
+  @return color.channel($hex, 'red', $space: rgb),
+    color.channel($hex, 'green', $space: rgb),
+    color.channel($hex, 'blue', $space: rgb);
+}
+
+:root {
+  @each $key, $value in $colors {
+    --color-#{$key}: #{$value};
+    --color-#{$key}--rgb: #{hex-to-rgb($value)};
+  }
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-black-200);
+}

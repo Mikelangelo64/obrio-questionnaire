@@ -1,0 +1,14 @@
+@use './font-size' as *;
+
+@mixin text-heading-styles {
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 166%;
+}
+
+@mixin text-heading-1 {
+  @include text-heading-styles;
+
+  font-size: px-to-rem(24);
+}

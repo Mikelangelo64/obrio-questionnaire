@@ -66,11 +66,7 @@ export default tseslint.config(
   },
   // fix esling.config.mjs error
   {
-    files: [
-      '**/eslint.config.mjs',
-      '**/.prettierrc.js',
-      '**/postcss.config.mjs',
-    ],
+    files: ['**/eslint.config.mjs', '**/.prettierrc.js'],
     extends: [tseslint.configs.disableTypeChecked],
   },
 );

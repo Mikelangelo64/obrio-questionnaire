@@ -1,0 +1,13 @@
+{
+  "plugins": ["stylelint-prettier"],
+  "extends": "stylelint-config-sass-guidelines",
+  "ignoreFiles": ["**/build/**/*.*", "**/normalize.css"],
+  "rules": {
+    "prettier/prettier": true,
+    "max-nesting-depth": 7,
+    "selector-class-pattern": null,
+    "selector-max-compound-selectors": null,
+    "selector-no-qualifying-type": null,
+    "@stylistic/function-parentheses-space-inside": "never-single-line"
+  }
+}

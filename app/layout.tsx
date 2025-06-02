@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import { Open_Sans } from 'next/font/google';
+import cn from 'clsx';
 import StoreProvider from './StoreProvider';
+import '@/styles/index.scss';
+import styles from './styles.module.scss';
+import ViewportHeightCalculation from '@/lib/features/ViewportHeightCalculation';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const geistSans = Open_Sans({
+  variable: '--font-family',
   subsets: ['latin'],
 });
 
@@ -24,11 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <StoreProvider>{children}</StoreProvider>
+    <html lang="en" className={cn(geistSans.variable, 'antialiased')}>
+      <body>
+        <ViewportHeightCalculation />
+
+        <StoreProvider>
+          <div className={styles.container}>{children}</div>
+        </StoreProvider>
       </body>
     </html>
   );

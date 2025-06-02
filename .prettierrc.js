@@ -10,7 +10,6 @@ const config = {
   bracketSameLine: false,
   arrowParens: 'avoid',
   endOfLine: 'auto',
-  plugins: ['prettier-plugin-tailwindcss'],
 };
 
 export default config;

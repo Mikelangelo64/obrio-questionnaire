@@ -1,0 +1,11 @@
+@mixin mobile-device() {
+  @media (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin non-mobile-device() {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}

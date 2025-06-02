@@ -1,0 +1,43 @@
+@use './base' as *;
+
+html {
+  font-family: var(--font-family);
+  font-size: inherit;
+  line-height: 100%;
+}
+
+:root {
+  @media (min-width: 320px) and (max-width: 340px) {
+    font-size: calc(0.75rem + (16 - 12) * ((100vw - 320px) / (340 - 320)));
+    /* Note: The calc base value (0.75rem) MUST be stated in REM to maintain accessibility */
+    /* Where: calc = min_font_size_in_rem + (max_font_size - min_font_size) * ((100vw - min_viewport_including_px_unit) / (max_viewport - min_viewport)) */
+
+    /* Safari resize fix */
+    min-height: 0;
+  }
+
+  @media (min-width: 361px) {
+    font-size: 16px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: var(--font-family);
+}
+
+* {
+  text-size-adjust: 100%;
+
+  @include mobile-device {
+    outline: none;
+  }
+}
