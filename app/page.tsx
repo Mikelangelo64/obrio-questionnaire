@@ -5,6 +5,7 @@ import {
 } from '@/data/staticDataUtils';
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
 import { EExtremeStatus, TScreen } from '@/types/question.type';
+import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
 import Button from '@/components/Button/Button';
 
 import styles from './styles.module.scss';
@@ -36,7 +37,7 @@ export default async function Home() {
   const { screenData } = await getFirstScreenData();
 
   return (
-    <>
+    <LayoutContainer>
       <main className={styles.content}>
         <h1 className={styles.title}>Let&apos;s start questionnaire!</h1>
 
@@ -50,6 +51,6 @@ export default async function Home() {
           Developed by @Mikelangelo64
         </p>
       </footer>
-    </>
+    </LayoutContainer>
   );
 }

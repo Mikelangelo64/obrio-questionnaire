@@ -1,0 +1,15 @@
+@use '@/styles/base' as *;
+
+.container {
+  padding: px-to-rem(20) var(--wrap);
+
+  min-height: calc(100 * var(--vh, 1vh));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &.with_header {
+    padding: calc(var(--header-height, #{px-to-rem(54)}) + px-to-rem(20))
+      var(--wrap) px-to-rem(20);
+  }
+}

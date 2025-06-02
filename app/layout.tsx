@@ -3,7 +3,6 @@ import { Open_Sans } from 'next/font/google';
 import cn from 'clsx';
 import StoreProvider from './StoreProvider';
 import '@/styles/index.scss';
-import styles from './styles.module.scss';
 import ViewportHeightCalculation from '@/lib/features/ViewportHeightCalculation';
 
 const geistSans = Open_Sans({
@@ -26,9 +25,7 @@ export default function RootLayout({
       <body>
         <ViewportHeightCalculation />
 
-        <StoreProvider>
-          <div className={styles.container}>{children}</div>
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

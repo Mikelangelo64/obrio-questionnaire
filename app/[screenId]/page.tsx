@@ -10,8 +10,10 @@ import {
 } from '@/types/question.type';
 import { fetchScreensData } from '@/lib/features/questionnaire/server/fetchScreensData';
 import GoBackButton from '@/lib/features/questionnaire/components/GoBackButton/GoBackButton';
-import styles from './styles.module.scss';
 import Image from 'next/image';
+import cn from 'clsx';
+import LayoutContainer from '@/components/LayoutContainer/LayoutContainer';
+import styles from './styles.module.scss';
 
 export async function generateStaticParams() {
   try {
@@ -60,8 +62,13 @@ export default async function Screen({
     return <div>Not found</div>;
   }
 
+  const isInfoScreen = screenData.screenType === EScreenType.INFO;
+
   return (
-    <>
+    <LayoutContainer
+      withHeader
+      className={cn(isInfoScreen && styles.info, styles.container)}
+    >
       <header className={styles.header}>
         {screenData.extremeStatus !== EExtremeStatus.START && (
           <GoBackButton className={styles.header__back} />
@@ -69,7 +76,11 @@ export default async function Screen({
 
         <Image
           className={styles.header__image}
-          src="/image/header-logo.png"
+          src={
+            isInfoScreen
+              ? '/image/header-logo-white.png'
+              : '/image/header-logo.png'
+          }
           width={15}
           height={16}
           alt="Logo"
@@ -93,10 +104,8 @@ export default async function Screen({
           <QuestionList screenData={screenData} screenId={screenId} />
         )}
 
-        {screenData.screenType === EScreenType.INFO && (
-          <Info screenData={screenData} />
-        )}
+        {isInfoScreen && <Info screenData={screenData} />}
       </div>
-    </>
+    </LayoutContainer>
   );
 }
