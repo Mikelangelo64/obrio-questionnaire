@@ -79,7 +79,7 @@ export default async function Screen({
 
   const { screenData } = await getScreenData(
     screenId,
-    typeof variant === 'string' ? variant : undefined,
+    Array.isArray(variant) ? variant[0] : variant,
   );
 
   if (!screenData) {
