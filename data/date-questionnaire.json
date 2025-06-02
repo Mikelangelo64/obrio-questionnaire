@@ -4,32 +4,56 @@
     "screenType": "QUESTION",
     "questionType": "DATE",
     "extremeStatus": "START",
-    "title": "Select any date:",
+    "title": "Choose a date earlier, later or equels this one 6/4/2025",
     "nextScreenConditions": [
       {
         "conditionalDateISO": "2025-06-04T14:48:00.000Z",
-        "condition": "EARLIER_OR_TODAY",
+        "condition": "EARLIER",
         "nextScreenId": "early"
       },
       {
         "conditionalDateISO": "2025-06-04T14:48:00.000Z",
         "condition": "LATER",
         "nextScreenId": "later"
+      },
+      {
+        "conditionalDateISO": "2025-06-04T14:48:00.000Z",
+        "condition": "TODAY",
+        "nextScreenId": "today"
       }
     ]
   },
   {
     "screenId": "early",
     "screenType": "INFO",
-    "title": "EARLY YEAAAH",
+    "title": "You choose early date that Jule 4th, thats good!",
     "buttonLabel": "next",
     "extremeStatus": "END"
   },
   {
     "screenId": "later",
     "screenType": "INFO",
-    "title": "LATER...",
-    "buttonLabel": "next later",
+    "title": "You choose later... interesting...",
+    "buttonLabel": "go next",
+    "extremeStatus": "END"
+  },
+  {
+    "screenId": "today",
+    "screenType": "QUESTION",
+    "questionType": "OPTIONS",
+    "title": "You choose Jule 4th! Why?",
+    "options": [
+      {
+        "optionId": "Because I can",
+        "value": "Because I can",
+        "label": "Because I can"
+      },
+      {
+        "optionId": "Why not?",
+        "value": "Why not?",
+        "label": "Why not?"
+      }
+    ],
     "extremeStatus": "END"
   }
 ]
