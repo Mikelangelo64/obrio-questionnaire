@@ -6,16 +6,18 @@ import styles from './styles.module.scss';
 const Button = ({
   className,
   asChild = false,
+  variant = 'primary',
   ...props
 }: ComponentProps<'button'> & {
   asChild?: boolean;
+  variant?: 'primary' | 'secondary';
 }) => {
   const Comp = asChild ? Slot : 'button';
 
   return (
     <Comp
       data-slot="button"
-      className={cn([styles.button, className])}
+      className={cn([styles.button, className, styles[variant]])}
       {...props}
     />
   );
