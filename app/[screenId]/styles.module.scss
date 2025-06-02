@@ -1,8 +1,10 @@
 @use '@/styles/base' as *;
 
-.info_container {
+.text_center {
   text-align: center;
+}
 
+.info_container {
   color: var(--color-white);
   background-image: linear-gradient(
     180deg,

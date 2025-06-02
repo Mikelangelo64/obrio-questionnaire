@@ -71,7 +71,10 @@ export default async function Screen({
     <QuestionGuardProvider>
       <LayoutContainer
         withHeader
-        className={cn(isInfoScreen && styles.info_container)}
+        className={cn(
+          isInfoScreen && styles.info_container,
+          (isInfoScreen || !!screenData.description) && styles.text_center,
+        )}
       >
         <Header variant={isInfoScreen ? 'dark' : 'light'}>
           {screenData.extremeStatus !== EExtremeStatus.START && (

@@ -40,7 +40,7 @@
   justify-content: center;
   align-items: center;
 
-  height: px-to-rem(64);
+  min-height: px-to-rem(64);
   border-radius: px-to-rem(16);
   padding: px-to-rem(12) px-to-rem(20);
   box-shadow: var(--button-shadow-shift-x) var(--button-shadow-shift-y)
@@ -50,6 +50,7 @@
   @include transition((color 0.4s, background 0.4s));
 
   text-decoration: unset;
+  text-align: center;
   font-family: var(--font-family);
   font-size: px-to-rem(14);
   font-weight: 400;
