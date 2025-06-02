@@ -1,4 +1,4 @@
-import Info from '@/lib/features/questionnaire/components/Info/Info';
+import InfoButton from '@/lib/features/questionnaire/components/InfoButton/InfoButton';
 import QuestionList from '@/lib/features/questionnaire/components/QuestionList/QuestionList';
 import TextWithDynamicSegments from '@/lib/features/questionnaire/components/TextWithDynamicSegments/TextWithDynamicSegments';
 import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
@@ -96,7 +96,7 @@ export default async function Screen({
             <QuestionList screenData={screenData} screenId={screenId} />
           )}
 
-          {isInfoScreen && <Info screenData={screenData} />}
+          {isInfoScreen && <InfoButton screenData={screenData} />}
         </div>
       </LayoutContainer>
     </QuestionGuardProvider>
