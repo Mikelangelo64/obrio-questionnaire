@@ -18,7 +18,7 @@ const Answers = ({ className }: { className?: string }) => {
             text={answer.questionTitle}
           />
 
-          <p className={styles.answer}>{answer.value}</p>
+          <p className={styles.answer}>{answer.label}</p>
         </li>
       ))}
     </ul>
