@@ -1,0 +1,32 @@
+@use '@/styles/base' as *;
+
+.answers {
+  @include reset-ul;
+
+  > * + * {
+    border-top: 1px solid var(--color-violet);
+    padding-top: px-to-rem(8);
+    margin-top: px-to-rem(8);
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: px-to-rem(4);
+}
+
+.title {
+  margin: 0;
+
+  font-size: px-to-rem(14);
+  line-height: 120%;
+}
+
+.answer {
+  margin: 0;
+
+  font-size: px-to-rem(16);
+  line-height: 120%;
+  font-weight: 700;
+}

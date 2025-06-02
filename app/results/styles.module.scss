@@ -1,0 +1,12 @@
+@use '@/styles/base' as *;
+
+.title {
+  @include text-heading-1;
+
+  margin-bottom: px-to-rem(20);
+}
+
+.button {
+  margin-top: px-to-rem(20);
+  width: 100%;
+}
