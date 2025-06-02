@@ -8,8 +8,7 @@ import {
 } from '@/types/question.type';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-// TODO: remove optionId
-type TAnswer = IOption & { questionTitle: TScreen['title'] };
+type TAnswer = Omit<IOption, 'optionId'> & { questionTitle: TScreen['title'] };
 
 interface IQuestionnaireState {
   variant: EQuestioannaireVariant | null;

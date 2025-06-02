@@ -90,7 +90,6 @@ const DatePicker = ({ screenData, className }: IProps) => {
         screenId: screenData.screenId,
         answer: {
           questionTitle: screenData.title,
-          optionId: screenData.title,
           label: date.toLocaleDateString(),
           value: date.toISOString(),
         },

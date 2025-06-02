@@ -66,7 +66,11 @@ const QuestionList = ({ screenData, className }: IProps) => {
     dispatch(
       setAnswer({
         screenId: screenData.screenId,
-        answer: { ...option, questionTitle: screenData.title },
+        answer: {
+          label: option.label,
+          value: option.value,
+          questionTitle: screenData.title,
+        },
       }),
     );
     dispatch(
