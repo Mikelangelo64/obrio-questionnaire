@@ -90,7 +90,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 > Don't forget edit .env variables
 
 > [!TIP]
-> You can check the app which is already deployed on Vercel [here](https://vercel.com/)
+> You can check the app which is already deployed on Vercel [here](obrio-questionnaire-ten.vercel.app)
 
 ## Dependencies
 
