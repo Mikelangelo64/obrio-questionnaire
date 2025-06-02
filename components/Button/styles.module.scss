@@ -1,0 +1,54 @@
+@use '@/styles/base' as *;
+
+.button {
+  @include reset-button;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: px-to-rem(64);
+  border: 1px solid var(--color-grey-100);
+  border-radius: px-to-rem(16);
+  padding: px-to-rem(12) px-to-rem(20);
+  box-shadow: px-to-rem(2) px-to-rem(2) px-to-rem(6)
+    rgba(var(--color-linear-3--rgb), 0.25);
+
+  cursor: pointer;
+  @include transition((color 0.4s, background 0.4s));
+
+  text-decoration: unset;
+  font-family: var(--font-family);
+  font-size: px-to-rem(14);
+  font-weight: 400;
+  line-height: 110%;
+
+  color: var(--color-foreground);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-linear-1) 0%,
+    var(--color-linear-2) calc(44% / 5),
+    var(--color-linear-3) calc(80% / 5),
+    var(--color-linear-4) calc(97% / 5),
+    var(--color-grey-200) calc(200% / 5),
+    var(--color-grey-200) calc(400% / 5)
+  );
+
+  background-position: 0 50%;
+  background-size: 100% 500%;
+
+  @include non-mobile-hover {
+    color: var(--color-white);
+    background-position: 0 0;
+  }
+
+  &:focus-visible {
+    color: var(--color-white);
+    background-position: 0 0;
+  }
+
+  &:active {
+    color: var(--color-white);
+    background-position: 0 0;
+  }
+}
