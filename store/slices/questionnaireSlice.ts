@@ -1,5 +1,6 @@
 import { TRootState } from '@/store/store';
 import {
+  EQuestioannaireVariant,
   IDynamicTextSegment,
   IOption,
   TScreen,
@@ -7,9 +8,11 @@ import {
 } from '@/types/question.type';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+// TODO: remove optionId
 type TAnswer = IOption & { questionTitle: TScreen['title'] };
 
 interface IQuestionnaireState {
+  variant: EQuestioannaireVariant | null;
   answers: Record<TScreenId, TAnswer>;
   nextScreenId: TScreenId | null;
   completedSteps: string[];
@@ -23,6 +26,7 @@ interface IQuestionnaireState {
 }
 
 const initialState: IQuestionnaireState = {
+  variant: null,
   answers: {},
   nextScreenId: null,
   completedSteps: [],
@@ -67,6 +71,12 @@ const questionnaireSlice = createSlice({
     ) => {
       state.textDynamicSegments[action.payload.label] = action.payload.value;
     },
+    setQuestionnaireVariant: (
+      state,
+      action: PayloadAction<EQuestioannaireVariant>,
+    ) => {
+      state.variant = action.payload;
+    },
     resetQuestionnaire: state => {
       state.answers = {};
       state.completedSteps = [];
@@ -97,6 +107,9 @@ export const selectIsQuestionnaireStarted = (state: TRootState) =>
 export const selectIsQuestionnaireEnded = (state: TRootState) =>
   state.questionnaire.isQuestionnaireEnded;
 
+export const selectQuestionnaireVariant = (state: TRootState) =>
+  state.questionnaire.variant;
+
 export const {
   setAnswer,
   setNextScreenId,
@@ -104,5 +117,6 @@ export const {
   setIsQuestionnaireStarted,
   setIsQuestionnaireEnded,
   resetQuestionnaire,
+  setQuestionnaireVariant,
 } = questionnaireSlice.actions;
 export default questionnaireSlice.reducer;

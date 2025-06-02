@@ -11,8 +11,11 @@ import cn from 'clsx';
 import DateInput from 'react-datepicker';
 import { useState } from 'react';
 import Button from '@/components/Button/Button';
-import { useAppDispatch } from '@/store/hooks';
-import { setAnswer } from '@/store/slices/questionnaireSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import {
+  selectQuestionnaireVariant,
+  setAnswer,
+} from '@/store/slices/questionnaireSlice';
 import { useRouter } from 'next/navigation';
 import { NOT_FOUND_URL } from '../../constants';
 
@@ -28,6 +31,8 @@ interface IProps {
 const DatePicker = ({ screenData, className }: IProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const questionnaireVariant = useAppSelector(selectQuestionnaireVariant);
 
   const [date, setDate] = useState<Date | null>(null);
 
@@ -97,7 +102,11 @@ const DatePicker = ({ screenData, className }: IProps) => {
       date,
     );
 
-    router.push(nextScreenId ? '/' + nextScreenId : NOT_FOUND_URL);
+    router.push(
+      nextScreenId
+        ? '/' + nextScreenId + `?variant=${questionnaireVariant}`
+        : NOT_FOUND_URL,
+    );
   };
 
   return (

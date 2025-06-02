@@ -4,6 +4,7 @@ import TextWithDynamicSegments from '@/lib/features/questionnaire/components/Tex
 import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
 import {
   EExtremeStatus,
+  EQuestioannaireVariant,
   EQuestionType,
   EScreenType,
   TScreen,
@@ -23,8 +24,11 @@ import DatePicker from '@/lib/features/questionnaire/components/DatePicker/DateP
 export async function generateStaticParams() {
   try {
     const data = await fetchScreensData();
+    const dataWithDate = await fetchScreensData(
+      EQuestioannaireVariant.WITH_DATE,
+    );
 
-    return data.map(screen => ({
+    return [...data, ...dataWithDate].map(screen => ({
       screenId: screen.screenId,
     }));
   } catch (error) {
@@ -34,18 +38,21 @@ export async function generateStaticParams() {
   }
 }
 
-async function getScreenData(screenId: string): Promise<{
+async function getScreenData(
+  screenId: string,
+  questionnaireVariant?: EQuestioannaireVariant,
+): Promise<{
   screenData: TScreen | null;
 }> {
   // Use static data for builds
   if (shouldUseStaticData()) {
-    const screenData = getStaticScreen(screenId);
+    const screenData = getStaticScreen(screenId, questionnaireVariant);
     return { screenData };
   }
 
   // Try API for development
   try {
-    const data = await fetchScreensData();
+    const data = await fetchScreensData(questionnaireVariant);
     const currentScreenData = data.find(screen => screen.screenId === screenId);
     return { screenData: currentScreenData || null };
   } catch (error) {
@@ -57,11 +64,23 @@ async function getScreenData(screenId: string): Promise<{
 
 export default async function Screen({
   params,
+  searchParams,
 }: {
   params: Promise<{ screenId: TScreenId }>;
+  searchParams: Promise<{
+    [key: string]:
+      | EQuestioannaireVariant
+      | EQuestioannaireVariant[]
+      | undefined;
+  }>;
 }) {
   const { screenId } = await params;
-  const { screenData } = await getScreenData(screenId);
+  const variant = (await searchParams).variant;
+
+  const { screenData } = await getScreenData(
+    screenId,
+    typeof variant === 'string' ? variant : undefined,
+  );
 
   if (!screenData) {
     return redirect(NOT_FOUND_URL);

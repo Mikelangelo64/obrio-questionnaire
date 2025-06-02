@@ -9,6 +9,7 @@ import {
 import Link from 'next/link';
 import {
   selectNextScreenId,
+  selectQuestionnaireVariant,
   setIsQuestionnaireEnded,
 } from '@/store/slices/questionnaireSlice';
 import Button, { TButtonProps } from '@/components/Button/Button';
@@ -24,11 +25,15 @@ const InfoButton = ({ screenData, className, onClick, ...props }: TProps) => {
   const dispatch = useAppDispatch();
 
   const nextScreenId = useAppSelector(selectNextScreenId);
+  const questionnaireVariant = useAppSelector(selectQuestionnaireVariant);
+
   const isLastScreen = screenData.extremeStatus === EExtremeStatus.END;
 
-  const nextHref = !!nextScreenId ? '/' + nextScreenId : null;
+  const nextHref = !!nextScreenId
+    ? '/' + nextScreenId + `?variant=${questionnaireVariant}`
+    : null;
   const nextScreenFromConditionsHref = !!screenData.nextInfoScreenId
-    ? '/' + screenData.nextInfoScreenId
+    ? '/' + screenData.nextInfoScreenId + `?variant=${questionnaireVariant}`
     : null;
 
   return (

@@ -1,6 +1,6 @@
 [
   {
-    "screenId": "prelanding",
+    "screenId": "prelanding-date",
     "screenType": "QUESTION",
     "questionType": "DATE",
     "extremeStatus": "START",

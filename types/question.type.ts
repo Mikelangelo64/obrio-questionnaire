@@ -1,3 +1,8 @@
+export enum EQuestioannaireVariant {
+  MAIN = 'MAIN',
+  WITH_DATE = 'WITH_DATE',
+}
+
 export enum EScreenType {
   QUESTION = 'QUESTION',
   INFO = 'INFO',

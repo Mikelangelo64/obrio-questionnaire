@@ -1,22 +1,49 @@
-// import QuestionData from './questionnaire.json';
-import QuestionData from './date-questionnaire.json';
-import { EExtremeStatus, TScreen } from '@/types/question.type';
+import MainQuestionData from './questionnaire.json';
+import WithDateQuestionData from './date-questionnaire.json';
+import {
+  EExtremeStatus,
+  EQuestioannaireVariant,
+  TScreen,
+} from '@/types/question.type';
 
-export const STATIC_SCREENS = QuestionData as TScreen[];
+export const STATIC_SCREENS = MainQuestionData as TScreen[];
+export const STATIC_WITH_DATE_SCREENS = WithDateQuestionData as TScreen[];
 
-export function getStaticScreens(): TScreen[] {
+export function getStaticScreens(
+  questionnaireVariant?: EQuestioannaireVariant,
+): TScreen[] {
+  if (questionnaireVariant === EQuestioannaireVariant.WITH_DATE) {
+    return STATIC_WITH_DATE_SCREENS;
+  }
+
   return STATIC_SCREENS;
 }
 
-export function getStaticScreen(screenId: string): TScreen | null {
-  return STATIC_SCREENS.find(screen => screen.screenId === screenId) || null;
+export function getStaticScreen(
+  screenId: string,
+  questionnaireVariant?: EQuestioannaireVariant,
+): TScreen | null {
+  let screens = STATIC_SCREENS;
+
+  if (questionnaireVariant === EQuestioannaireVariant.WITH_DATE) {
+    screens = STATIC_WITH_DATE_SCREENS;
+  }
+
+  return screens.find(screen => screen.screenId === screenId) || null;
 }
 
-export function getStaticFirstScreen(): TScreen | null {
+export function getStaticFirstScreen(
+  questionnaireVariant?: EQuestioannaireVariant,
+): TScreen | null {
+  let screens = STATIC_SCREENS;
+
+  if (questionnaireVariant === EQuestioannaireVariant.WITH_DATE) {
+    screens = STATIC_WITH_DATE_SCREENS;
+  }
+
   return (
-    STATIC_SCREENS.find(
-      screen => screen.extremeStatus === EExtremeStatus.START,
-    ) || null
+    screens.find(screen => screen.extremeStatus === EExtremeStatus.START) ||
+    null
   );
 }
 

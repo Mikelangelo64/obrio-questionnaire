@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   EExtremeStatus,
   IOption,
@@ -12,6 +12,7 @@ import {
 } from '@/types/question.type';
 import Link from 'next/link';
 import {
+  selectQuestionnaireVariant,
   setAnswer,
   setIsQuestionnaireEnded,
   setNextScreenId,
@@ -33,6 +34,8 @@ interface IProps {
 
 const QuestionList = ({ screenData, className }: IProps) => {
   const dispatch = useAppDispatch();
+
+  const questionnaireVariant = useAppSelector(selectQuestionnaireVariant);
 
   const isLastScreen = screenData.extremeStatus === EExtremeStatus.END;
 
@@ -93,11 +96,15 @@ const QuestionList = ({ screenData, className }: IProps) => {
         );
 
         const nextInfoScreenHref = !!screenData.nextInfoScreenId
-          ? '/' + screenData.nextInfoScreenId
+          ? '/' +
+            screenData.nextInfoScreenId +
+            `?variant=${questionnaireVariant}`
           : null;
 
         const nextScreenFromConditionsHref = !!nextScreenIdFromConditions
-          ? '/' + nextScreenIdFromConditions
+          ? '/' +
+            nextScreenIdFromConditions +
+            `?variant=${questionnaireVariant}`
           : null;
 
         return (
