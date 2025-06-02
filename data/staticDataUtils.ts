@@ -1,4 +1,5 @@
-import QuestionData from './questionnaire.json';
+// import QuestionData from './questionnaire.json';
+import QuestionData from './date-questionnaire.json';
 import { EExtremeStatus, TScreen } from '@/types/question.type';
 
 export const STATIC_SCREENS = QuestionData as TScreen[];

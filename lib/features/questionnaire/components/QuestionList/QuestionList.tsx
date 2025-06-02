@@ -5,7 +5,8 @@ import {
   EExtremeStatus,
   IOption,
   TNextScreenOptionCondition,
-  TQuestion,
+  TQuestionBase,
+  TQuestionOptions,
   TScreenBase,
   TScreenId,
 } from '@/types/question.type';
@@ -25,7 +26,7 @@ import styles from './styles.module.scss';
 import Button from '@/components/Button/Button';
 
 interface IProps {
-  screenData: TScreenBase & TQuestion;
+  screenData: TScreenBase & TQuestionBase & TQuestionOptions;
   screenId: string;
   className?: string;
 }

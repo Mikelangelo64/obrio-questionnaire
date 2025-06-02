@@ -1,0 +1,35 @@
+[
+  {
+    "screenId": "prelanding",
+    "screenType": "QUESTION",
+    "questionType": "DATE",
+    "extremeStatus": "START",
+    "title": "Select any date:",
+    "nextScreenConditions": [
+      {
+        "conditionalDateISO": "2025-06-04T14:48:00.000Z",
+        "condition": "EARLIER_OR_TODAY",
+        "nextScreenId": "early"
+      },
+      {
+        "conditionalDateISO": "2025-06-04T14:48:00.000Z",
+        "condition": "LATER",
+        "nextScreenId": "later"
+      }
+    ]
+  },
+  {
+    "screenId": "early",
+    "screenType": "INFO",
+    "title": "EARLY YEAAAH",
+    "buttonLabel": "next",
+    "extremeStatus": "END"
+  },
+  {
+    "screenId": "later",
+    "screenType": "INFO",
+    "title": "LATER...",
+    "buttonLabel": "next later",
+    "extremeStatus": "END"
+  }
+]

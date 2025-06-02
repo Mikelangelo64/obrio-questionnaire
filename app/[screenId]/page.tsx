@@ -4,6 +4,7 @@ import TextWithDynamicSegments from '@/lib/features/questionnaire/components/Tex
 import { getStaticScreen, shouldUseStaticData } from '@/data/staticDataUtils';
 import {
   EExtremeStatus,
+  EQuestionType,
   EScreenType,
   TScreen,
   TScreenId,
@@ -17,6 +18,7 @@ import Header from '@/components/Header/Header';
 import styles from './styles.module.scss';
 import { NOT_FOUND_URL } from '@/lib/features/questionnaire/constants';
 import QuestionGuardProvider from '@/lib/features/questionnaire/components/QuestionGuardProvider';
+import DatePicker from '@/lib/features/questionnaire/components/DatePicker/DatePicker';
 
 export async function generateStaticParams() {
   try {
@@ -66,6 +68,7 @@ export default async function Screen({
   }
 
   const isInfoScreen = screenData.screenType === EScreenType.INFO;
+  const isQuestionScreen = screenData.screenType === EScreenType.QUESTION;
 
   return (
     <QuestionGuardProvider>
@@ -95,9 +98,15 @@ export default async function Screen({
             />
           )}
 
-          {screenData.screenType === EScreenType.QUESTION && (
-            <QuestionList screenData={screenData} screenId={screenId} />
-          )}
+          {isQuestionScreen &&
+            screenData.questionType === EQuestionType.OPTIONS && (
+              <QuestionList screenData={screenData} screenId={screenId} />
+            )}
+
+          {isQuestionScreen &&
+            screenData.questionType === EQuestionType.DATE && (
+              <DatePicker screenData={screenData} screenId={screenId} />
+            )}
 
           {isInfoScreen && <InfoButton screenData={screenData} />}
         </div>

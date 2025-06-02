@@ -1,0 +1,15 @@
+@use '@/styles/base' as *;
+
+.date_picker {
+  display: flex;
+  flex-direction: column;
+  gap: px-to-rem(10);
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+}

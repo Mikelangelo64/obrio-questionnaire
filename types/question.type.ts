@@ -5,11 +5,20 @@ export enum EScreenType {
 
 export enum EQuestionType {
   OPTIONS = 'OPTIONS',
+  DATE = 'DATE',
 }
 
 export enum EExtremeStatus {
   START = 'START',
   END = 'END',
+}
+
+export enum EDateCondition {
+  EARLIER = 'EARLIER',
+  LATER = 'LATER',
+  EARLIER_OR_TODAY = 'EARLIER_OR_TODAY',
+  LATER_OR_TODAY = 'LATER_OR_TODAY',
+  TODAY = 'TODAY',
 }
 
 export type TScreenId = string;
@@ -37,8 +46,18 @@ export interface INextScreenOptionConditionInfo {
   nextScreenId: TScreenId;
 }
 
+export interface INextScreenDateConditionInfo {
+  conditionalDateISO: string;
+  condition: EDateCondition;
+  nextScreenId: TScreenId;
+}
+
 export type TNextScreenOptionCondition =
   | INextScreenOptionConditionInfo[]
+  | TScreenId;
+
+export type TNextScreenDateCondition =
+  | INextScreenDateConditionInfo[]
   | TScreenId;
 
 export type TScreenBase = {
@@ -65,6 +84,12 @@ export type TQuestionOptions = {
   options: IOption[];
 };
 
-export type TQuestion = TQuestionBase & TQuestionOptions;
+export type TQuestionDate = {
+  questionType: EQuestionType.DATE;
+  nextScreenConditions?: TNextScreenDateCondition;
+  buttonLabel?: string;
+};
+
+export type TQuestion = TQuestionBase & (TQuestionOptions | TQuestionDate);
 
 export type TScreen = TScreenBase & (TQuestion | TInfoScreen);
